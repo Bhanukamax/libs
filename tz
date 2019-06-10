@@ -1,0 +1,44 @@
+#!/bin/bash
+function setTime {
+    printf "\nsetting time to '$1'\n\n"
+    timedatectl set-timezone $1
+}
+
+function getChoice {
+echo "1. UTC"
+echo "2. Asia/Colombo"
+echo "3. Australia/Sydney"
+read -p "Enter your choice? " choice
+
+case "$choice" in
+    1)
+    setTime UTC
+    ;;
+    2)
+    setTime 'Asia/Colombo'
+    ;;
+    3)
+    setTime 'Australia/Sydney'
+    ;;
+    *)
+    printf "\ninvalid selection\n"
+    ;;
+esac
+}
+
+case "$1" in
+    utc)
+    setTime UTC
+    ;;
+    cmb)
+    setTime 'Asia/Colombo'
+    ;;
+    aus)
+    setTime 'Australia/Sydney'
+    ;;
+    *)
+    getChoice
+
+    ;;
+esac
+
